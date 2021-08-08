@@ -1,15 +1,6 @@
 (function($) {
   "use strict"; // Start of use strict
 
-
-  // Collapse function
-  $('.collapse').on('shown.bs.collapse', function(e) {
-    var $card = $(this).closest('.card');
-    $('html,body').animate({
-      scrollTop: $card.offset().top - 50
-    }, 500);
-  });
-
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -17,7 +8,7 @@
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
       if (target.length) {
         $('html, body').animate({
-          scrollTop: (target.offset().top - 72)
+          scrollTop: (target.offset().top - 56)
         }, 1000, "easeInOutExpo");
         return false;
       }
@@ -32,15 +23,15 @@
   // Activate scrollspy to add active class to navbar items on scroll
   $('body').scrollspy({
     target: '#mainNav',
-    offset: 75
+    offset: 57
   });
 
   // Collapse Navbar
   var navbarCollapse = function() {
     if ($("#mainNav").offset().top > 100) {
-      $("#mainNav").addClass("navbar-scrolled");
+      $("#mainNav").addClass("navbar-shrink");
     } else {
-      $("#mainNav").removeClass("navbar-scrolled");
+      $("#mainNav").removeClass("navbar-shrink");
     }
   };
   // Collapse now if page is not at top
@@ -48,8 +39,25 @@
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
+  // Scroll reveal calls
+  window.sr = ScrollReveal();
+  sr.reveal('.sr-icons', {
+    duration: 600,
+    scale: 0.3,
+    distance: '0px'
+  }, 200);
+  sr.reveal('.sr-button', {
+    duration: 1000,
+    delay: 200
+  });
+  sr.reveal('.sr-contact', {
+    duration: 600,
+    scale: 0.3,
+    distance: '0px'
+  }, 300);
+
   // Magnific popup calls
-  $('#portfolio').magnificPopup({
+  $('.popup-gallery').magnificPopup({
     delegate: 'a',
     type: 'image',
     tLoading: 'Loading image #%curr%...',
